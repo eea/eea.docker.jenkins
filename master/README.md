@@ -5,44 +5,33 @@ Docker image for EEA jenkins master node
 
 ## Requires
 
-* docker
-* docker-compose
+* [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/)
 
 
 ## Getting started
 
 * Get config:
 
-  ```
-  $ git clone https://github.com/eea/eea.docker.jenkins.master.git
-  ```
+    $ git clone https://github.com/eea/eea.docker.jenkins.git
 
 * Add persistent volume on host:
 
-  ```
-  $ sudo mkdir /var/jenkins_home
-  ```
+    $ sudo mkdir /var/jenkins_home
 
 * Optionally add existing jenkins configuration, plugins and jobs:
 
-  ```
-  $ sudo git clone https://github.com/eea/eea.docker.jenkins.config /var/jenkins_home
-  ```
+    $ sudo git clone https://github.com/eea/eea.docker.jenkins.config /var/jenkins_home
 
 * Fix permissions:
 
-  ```
-  $ sudo chown -R 1000:docker /var/jenkins_home
-  ```
+    $ sudo chown -R 1000:docker /var/jenkins_home
 
 * Start the app:
 
-  ```
-  $ sudo docker-compose up -d
-  ```
+    $ sudo docker-compose up -d
 
 * Verify that it works and start customizing jenkins at http://localhost:80
-
 * Add Jenkins workers. See https://github.com/eea/eea.docker.jenkins.slave
 
 
