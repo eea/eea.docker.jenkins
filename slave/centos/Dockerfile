@@ -3,7 +3,7 @@ MAINTAINER "Alin Voinea" <alin.voinea@eaudeweb.ro>
 
 RUN \
   yum -y update && yum clean all && \
-  yum -y install openjdk-7-jdk
+  yum -y install java-1.7.0-openjdk
 
 # Set JENKINS_HOME same as master
 ENV JENKINS_HOME /var/jenkins_home
