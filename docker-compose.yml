@@ -1,0 +1,14 @@
+master:
+  image: eeacms/jenkins:master
+  ports:
+    - "80:8080"
+    - "50000:50000"
+  volumes:
+    - /var/jenkins_home:/var/jenkins_home
+
+worker:
+  image: eeacms/jenkins:slave
+  volumes:
+    - /var/jenkins_home:/var/jenkins_home
+  env_file:
+    - .secret

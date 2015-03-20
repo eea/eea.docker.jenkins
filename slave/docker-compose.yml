@@ -1,0 +1,20 @@
+centos-worker:
+  image: eeacms/jenkins:centos-slave
+  volumes:
+    - /var/jenkins_home:/var/jenkins_home
+  env_file:
+    - .secret
+
+debian-worker:
+  image: eeacms/jenkins:debian-slave
+  volumes:
+    - /var/jenkins_home:/var/jenkins_home
+  env_file:
+    - .secret
+
+ubuntu-worker:
+  image: eeacms/jenkins:ubuntu-slave
+  volumes:
+    - /var/jenkins_home:/var/jenkins_home
+  env_file:
+    - .secret
