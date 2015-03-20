@@ -22,8 +22,10 @@ RUN useradd -d "$JENKINS_HOME/worker" -u 1000 -m -s /bin/bash jenkins
 VOLUME $JENKINS_HOME
 
 # Add swarm-client
-COPY ../swarm-client-1.22-jar-with-dependencies.jar /bin/swarm-client.jar
-COPY ../start.sh /bin/jenkins-slave.sh
+RUN curl -o /bin/swarm-client.jar -k http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar
+
+# Add start script
+RUN curl -o /bin/jenkins-slave.sh -k https://raw.githubusercontent.com/eea/eea.docker.jenkins/master/slave/start.sh
 
 # Login as jenkins
 ENV HOME $JENKINS_HOME/worker
