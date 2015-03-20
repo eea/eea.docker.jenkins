@@ -23,6 +23,7 @@ RUN curl -o /bin/swarm-client.jar -k http://maven.jenkins-ci.org/content/reposit
 
 # Add start script
 RUN curl -o /bin/jenkins-slave.sh -k https://raw.githubusercontent.com/eea/eea.docker.jenkins/master/slave/start.sh
+RUN chmod +x /bin/jenkins-slave.sh
 
 # Login as jenkins
 ENV HOME $JENKINS_HOME/worker
