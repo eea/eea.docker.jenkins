@@ -37,63 +37,51 @@ your non-related EEA projects.
     $ git clone https://github.com/eea/eea.docker.jenkins.git
     $ cd eea.docker.jenkins
 
+Optionally restore existing jenkins configuration, jobs and plugins.
+
+    See `Persistent data as you wish` bellow
+
+Start (master only)
+
+    $ sudo docker-compose up master (-d)
+
 Add user and password to connect jenkins slaves to jenkins master
 
     $ copy .secret.example .secret
     $ vim .secret
 
-Optionally add existing jenkins configuration. See `Persistent data` section
-bellow.
+Start (master and 1 slave)
 
-Scale
+    $ sudo docker-compose up master worker (-d)
 
-    $sudo docker-compose scale worker=3
+Start (master and 3 slaves)
 
-Start
+    $ sudo docker-compose scale worker=3
+    $ sudo docker-compose up master worker (-d)
 
-    $ sudo docker-compose up -d
+Start (debian/centos/ubuntu slaves)
 
-
-### Alternative usage
-
-You can also build separately master and slaves
-
-Master
-
-    $ cd master
-    $ sudo docker-compose up -d
-
-Slave
-
-    $ cd slave
-    $ sudo docker-compose up -d
-
-  or
-
-    $ sudo docker-compose scale centos=2 deian=3 ubuntu=5
-    $ sudo docker-compose up -d
-
-  or if you want only CentOS workers
-
-    $ cd slave/centos
-    $ sudo docker-compose scale worker=5
-    $ sudo docker-compose up -d
+    $ sudo docker-compose up master centos debian ubuntu (-d)
 
 
-### Persistent data
+## Persistent data as you wish ##
+The Jenkins data is kept in a
+[data-only container](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e)
+named *data*. The data container keeps the persistent data for a production environment and
+[must be backed up](https://github.com/paimpozhil/docker-volume-backup).
 
-In order to persist jenkins conf files and workspaces create a folder called
-`jenkins_home` within `/var`
+So if you are running in a devel environment, you can skip the backup and delete
+the container if you want.
 
-    $ sudo mkdir /var/jenkins_home
+On a production environment you would probably want to backup the container at regular intervals.
+The data container can also be easily
+[copied, moved and be reused between different environments](https://docs.docker.com/userguide/dockervolumes/#backup-restore-or-migrate-data-volumes).
 
-Optionally add existing jobs and plugins configuration
 
-    $ sudo git clone https://github.com/eea/eea.docker.jenkins.config.git
+To setup data container with existing jenkins configuration, jobs and plugins:
 
-And fix permissions
-
-    $ sudo chown -R 1000:docker /var/jenkins_home
+    $ docker-compose up data
+    $ docker run -it --rm --volumes-from eeadockerjenkins_data_1 eeacms/linux:ubuntu /bin/sh -c "git clone https://github.com/eea/eea.docker.jenkins.config.git /var/jenkins_home && chown -R 1000:1000 /var/jenkins_home"
 
 
 ## Copyright and license

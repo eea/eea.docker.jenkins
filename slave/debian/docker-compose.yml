@@ -1,6 +1,0 @@
-worker:
-  image: eeacms/jenkins:debian-slave
-  volumes:
-    - /var/jenkins_home:/var/jenkins_home
-  env_file:
-    - .secret
