@@ -6,6 +6,8 @@ master:
     - "50000:50000"
   volumes_from:
     - data
+  links:
+    - postfix
 
 worker:
   image: eeacms/jenkins:slave
@@ -36,6 +38,12 @@ ubuntu:
   user: 1000
   volumes_from:
     - data
+  env_file:
+    - .secret
+
+postfix:
+  image: yorkshirekev/postfix
+  entrypoint: ["/bin/bash", "-c", "/startservices.sh $POSTFIX_DOMAIN"]
   env_file:
     - .secret
 
