@@ -37,9 +37,8 @@ your non-related EEA projects.
     $ git clone https://github.com/eea/eea.docker.jenkins.git
     $ cd eea.docker.jenkins
 
-Optionally restore existing jenkins configuration, jobs and plugins.
-
-    See `Persistent data as you wish` bellow
+Before starting you may want to restore existing jenkins configuration,
+jobs and plugins within data container. See `Persistent data as you wish` bellow.
 
 Start (master only)
 
