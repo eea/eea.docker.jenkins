@@ -14,10 +14,6 @@ ENV JENKINS_HOME /var/jenkins_home
 RUN mkdir -p $JENKINS_HOME
 RUN useradd -d "$JENKINS_HOME/worker" -u 1000 -m -s /bin/bash jenkins
 
-# Jenkins home directoy is a volume, so configuration and build history
-# can be persisted and survive image upgrades
-VOLUME $JENKINS_HOME
-
 # Add swarm-client
 RUN curl -o /bin/swarm-client.jar -k http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar
 
