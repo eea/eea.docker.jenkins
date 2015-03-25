@@ -84,4 +84,13 @@ if [ ! -z "$JENKINS_DISABLE_SSL_VERIFICATION" ]; then
   PARAMS="$PARAMS -disableSslVerification"
 fi
 
+# Setup git
+if [ ! -z "$GIT_NAME" ]; then
+  /usr/bin/git config --global user.name "$GIT_NAME"
+fi
+
+if [ ! -z "$GIT_EMAIL" ]; then
+  /usr/bin/git config --global user.email "$GIT_EMAIL"
+fi
+
 /usr/bin/java -jar /bin/swarm-client.jar -fsroot $JENKINS_HOME/worker/ $PARAMS
