@@ -3,7 +3,15 @@ MAINTAINER "Alin Voinea" <alin.voinea@eaudeweb.ro>
 
 RUN \
   yum -y update && yum clean all && \
-  yum -y install java-1.7.0-openjdk
+  yum -y install \
+    java-1.7.0-openjdk \
+    xorg-x11-server-Xvfb
+
+#
+# XXX Fix me. Install
+#
+# calibre (ebook-convert)
+#
 
 # Set JENKINS_HOME same as master
 ENV JENKINS_HOME /var/jenkins_home

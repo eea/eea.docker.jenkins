@@ -3,7 +3,10 @@ MAINTAINER "Alin Voinea" <alin.voinea@eaudeweb.ro>
 
 RUN \
   apt-get update && \
-  apt-get install -y openjdk-7-jdk
+  apt-get install -y \
+    openjdk-7-jdk \
+    calibre \
+    xvfb
 
 # Cleanup apt lists
 RUN rm -rf /var/lib/apt/lists/*
