@@ -1,4 +1,4 @@
-FROM eeacms/linux:debian
+FROM eeacms/debian
 MAINTAINER "Alin Voinea" <alin.voinea@eaudeweb.ro>
 
 RUN \

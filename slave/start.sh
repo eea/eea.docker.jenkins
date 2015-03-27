@@ -14,7 +14,7 @@ fi
 
 # Name of the slave
 if [ ! -z "$JENKINS_NAME" ]; then
-  PARAMS="$PARAMS -name $JENKINS_NAME"
+  PARAMS="$PARAMS -name $JENKINS_NAME-$RANDOM"
 fi
 
 # Description to be put on the slave
