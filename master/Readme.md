@@ -82,6 +82,10 @@ To setup data container with existing jenkins configuration, jobs and plugins:
     $ docker-compose up data
     $ docker run -it --rm --volumes-from eeadockerjenkins_data_1 eeacms/ubuntu /bin/sh -c "git clone https://github.com/eea/eea.docker.jenkins.config.git /var/jenkins_home && chown -R 1000:1000 /var/jenkins_home"
 
+To extract data from container you can also use:
+
+    $  docker cp eeadockerjenkins_data_1:/var/jenkins_home /media/backup
+
 
 ## Copyright and license
 

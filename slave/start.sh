@@ -93,4 +93,4 @@ if [ ! -z "$GIT_EMAIL" ]; then
   /usr/bin/git config --global user.email "$GIT_EMAIL"
 fi
 
-/usr/bin/java -jar /bin/swarm-client.jar -fsroot $JENKINS_HOME/worker/ $PARAMS
+/usr/bin/java $JAVA_OPTS -jar /bin/swarm-client.jar -fsroot $JENKINS_HOME/worker/ $PARAMS

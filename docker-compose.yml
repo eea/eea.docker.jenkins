@@ -8,6 +8,8 @@ master:
     - data
   links:
     - postfix
+  env_file:
+    - .secret
 
 worker:
   image: eeacms/jenkins:slave
