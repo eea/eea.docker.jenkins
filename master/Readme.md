@@ -15,16 +15,6 @@ your non-related EEA projects.
   - `:centos-slave`
 
 
-### Base docker image
-
- - https://registry.hub.docker.com/u/eeacms/jenkins/
-
-
-### Source code
-
-  - http://github.com/eea/eea.docker.jenkins
-
-
 ### Installation
 
 1. Install [Docker](https://www.docker.com/).
