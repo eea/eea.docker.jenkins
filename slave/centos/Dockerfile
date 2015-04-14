@@ -2,10 +2,19 @@ FROM eeacms/centos
 MAINTAINER "Alin Voinea" <alin.voinea@eaudeweb.ro>
 
 RUN \
-  yum -y update && yum clean all && \
+  yum -y updateinfo && \
   yum -y install \
     java-1.7.0-openjdk \
     xorg-x11-server-Xvfb
+
+#
+# Node.js
+#
+RUN curl -sL https://rpm.nodesource.com/setup | bash -
+RUN yum install -y nodejs
+
+# Cleanup cache
+RUN yum clean all
 
 #
 # XXX Fix me. Install

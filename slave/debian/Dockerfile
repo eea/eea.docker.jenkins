@@ -6,7 +6,8 @@ RUN \
   apt-get install -y \
     openjdk-7-jdk \
     calibre \
-    xvfb
+    xvfb \
+    npm
 
 # Cleanup apt lists
 RUN rm -rf /var/lib/apt/lists/*
