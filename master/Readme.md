@@ -27,17 +27,18 @@ your non-related EEA projects.
     $ git clone https://github.com/eea/eea.docker.jenkins.git
     $ cd eea.docker.jenkins
 
-Before starting you may want to restore existing jenkins configuration,
-jobs and plugins within data container. See `Persistent data as you wish` bellow.
+
+Add user and password to connect jenkins slaves to jenkins master
+
+    $ cp .secret.example .secret
+    $ vi .secret
+
+**Before starting you may want to restore existing jenkins configuration**,
+jobs and plugins within a data container. See section `Restore existing jenkins configuration` for the command to start a data container first.
 
 Start (master only)
 
     $ sudo docker-compose up master (-d)
-
-Add user and password to connect jenkins slaves to jenkins master
-
-    $ copy .secret.example .secret
-    $ vim .secret
 
 Start (master and 1 slave)
 
@@ -67,12 +68,13 @@ The data container can also be easily
 [copied, moved and be reused between different environments](https://docs.docker.com/userguide/dockervolumes/#backup-restore-or-migrate-data-volumes).
 
 
+### Restore existing jenkins configuration ###
 To setup data container with existing jenkins configuration, jobs and plugins:
 
     $ docker-compose up data
     $ docker run -it --rm --volumes-from eeadockerjenkins_data_1 eeacms/ubuntu /bin/sh -c "git clone https://github.com/eea/eea.docker.jenkins.config.git /var/jenkins_home && chown -R 1000:1000 /var/jenkins_home"
 
-To extract data from container you can also use:
+To extract all the data from the container (configuration and jobs history) you can use:
 
     $  docker cp eeadockerjenkins_data_1:/var/jenkins_home /media/backup
 
