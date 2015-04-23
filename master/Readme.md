@@ -36,22 +36,23 @@ Add user and password to connect jenkins slaves to jenkins master
 **Before starting you may want to restore existing jenkins configuration**,
 jobs and plugins within a data container. See section `Restore existing jenkins configuration` for the command to start a data container first.
 
+Below some cluster examples on how to start a master and 1 or more slaves using docker-compose. Adjust the cluster composition depending on your jenkins needs.
+
 Start (master only)
 
-    $ sudo docker-compose up master (-d)
+    $ sudo docker-compose up -d master
 
 Start (master and 1 slave)
 
-    $ sudo docker-compose up master worker (-d)
+    $ sudo docker-compose up -d master worker
 
-Start (master and 3 slaves)
+Scale slaves to 3
 
     $ sudo docker-compose scale worker=3
-    $ sudo docker-compose up master worker (-d)
 
 Start (debian/centos/ubuntu slaves)
 
-    $ sudo docker-compose up master centos debian ubuntu (-d)
+    $ sudo docker-compose up -d master centos debian ubuntu
 
 
 ## Persistent data as you wish ##
