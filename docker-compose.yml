@@ -10,7 +10,7 @@ master:
   links:
     - postfix
   env_file:
-    - .secret
+    - master.env
 
 worker:
   restart: always
@@ -20,6 +20,7 @@ worker:
     - data
   env_file:
     - .secret
+    - slave.env
 
 centos:
   restart: always
@@ -29,6 +30,7 @@ centos:
     - data
   env_file:
     - .secret
+    - slave.env
 
 debian:
   restart: always
@@ -38,6 +40,7 @@ debian:
     - data
   env_file:
     - .secret
+    - slave.env
 
 ubuntu:
   restart: always
@@ -47,12 +50,14 @@ ubuntu:
     - data
   env_file:
     - .secret
+    - slave.env
 
 postfix:
   image: yorkshirekev/postfix
   entrypoint: ["/bin/bash", "-c", "/startservices.sh $POSTFIX_DOMAIN"]
   env_file:
     - .secret
+    - postfix.env
 
 data:
   build: data
