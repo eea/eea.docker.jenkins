@@ -53,9 +53,11 @@ jobs and plugins within a data container. See section [Restore existing jenkins 
 
 Below some cluster examples on how to start a master and one or more slaves using docker-compose. Adjust the cluster composition depending on your jenkins needs.
 
-Start (master only)
+Start (master only). Do this the first time you run the jenkins cluster.
 
     $ sudo docker-compose up -d master
+
+Now go to http://localhost:80/configure and configure the JENKINS_URL, otherwise the [slaves will not be able to connect to the master](https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=60915879). This is necessary the first time you run the master.
 
 Start (master and 1 slave)
 
