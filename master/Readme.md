@@ -102,12 +102,15 @@ So if you are running in a devel environment, you can skip the backup and delete
 the container if you want.
 
 On a production environment you would probably want to backup the container at regular intervals.
-The data container can also be easily
-[copied, moved and be reused between different environments](https://docs.docker.com/userguide/dockervolumes/#backup-restore-or-migrate-data-volumes).
+
+For example, ssh to the host and extract all the data from the container (configuration and jobs history) by using the following command:
+
+    $  docker cp eeadockerjenkins_data_1:/var/jenkins_home /media/backup
+
+The data container can also be easily [copied, moved and be reused between different environments](https://docs.docker.com/userguide/dockervolumes/#backup-restore-or-migrate-data-volumes).
 
 <a name="restore"></a>
 ### Restore existing jenkins configuration ###
-
 
 To setup data container with existing jenkins configuration, jobs and plugins:
 
@@ -115,9 +118,6 @@ To setup data container with existing jenkins configuration, jobs and plugins:
     $ docker run -it --rm --volumes-from eeadockerjenkins_data_1 eeacms/ubuntu \
        /bin/sh -c "git clone https://github.com/eea/eea.docker.jenkins.config.git /var/jenkins_home && chown -R 1000:1000 /var/jenkins_home"
 
-To extract all the data from the container (configuration and jobs history) you can use:
-
-    $  docker cp eeadockerjenkins_data_1:/var/jenkins_home /media/backup
 
 <a name="env"></a>
 ## Supported environment variables ##
