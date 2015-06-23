@@ -1,7 +1,7 @@
 master:
   restart: always
   image: eeacms/jenkins:master
-  user: 1000
+  user: "1000"
   ports:
     - "80:8080"
     - "50000:50000"
@@ -15,7 +15,7 @@ master:
 worker:
   restart: always
   image: eeacms/jenkins:slave
-  user: 1000
+  user: "1000"
   volumes_from:
     - data
   env_file:
@@ -25,7 +25,7 @@ worker:
 centos:
   restart: always
   image: eeacms/jenkins:centos-slave
-  user: 1000
+  user: "1000"
   volumes_from:
     - data
   env_file:
@@ -35,7 +35,7 @@ centos:
 debian:
   restart: always
   image: eeacms/jenkins:debian-slave
-  user: 1000
+  user: "1000"
   volumes_from:
     - data
   env_file:
@@ -45,7 +45,7 @@ debian:
 ubuntu:
   restart: always
   image: eeacms/jenkins:ubuntu-slave
-  user: 1000
+  user: "1000"
   volumes_from:
     - data
   env_file:
@@ -61,6 +61,6 @@ postfix:
 
 data:
   build: data
-  user: 1000
+  user: "1000"
   volumes:
     - /var/jenkins_home
