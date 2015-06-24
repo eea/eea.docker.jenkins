@@ -23,7 +23,6 @@ worker:
     - slave.env
 
 centos:
-  restart: always
   image: eeacms/jenkins:centos-slave
   user: 1000
   volumes_from:
@@ -33,7 +32,6 @@ centos:
     - slave.env
 
 debian:
-  restart: always
   image: eeacms/jenkins:debian-slave
   user: 1000
   volumes_from:
@@ -43,7 +41,6 @@ debian:
     - slave.env
 
 ubuntu:
-  restart: always
   image: eeacms/jenkins:ubuntu-slave
   user: 1000
   volumes_from:
@@ -53,6 +50,7 @@ ubuntu:
     - slave.env
 
 postfix:
+  restart: always
   image: yorkshirekev/postfix
   entrypoint: ["/bin/bash", "-c", "/startservices.sh $POSTFIX_DOMAIN"]
   env_file:
