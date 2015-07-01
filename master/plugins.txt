@@ -17,8 +17,8 @@ next-executions:1.0.10
 Hudson core:1.596.2
 monitoring:1.55.0
 git-client:1.16.1
-dependencyanalyzer:0.7
 matrix-auth:1.1
+dependencyanalyzer:0.7
 git:2.3.5
 collapsing-console-sections:1.4.1
 avatar:1.2
@@ -78,6 +78,7 @@ analysis-core:1.70
 maven-deployment-linker:1.5.1
 trac:1.13
 pam-auth:1.1
+ci-game:1.21
 gcal:0.4
 checkstyle:3.41
 m2release:0.14.0
