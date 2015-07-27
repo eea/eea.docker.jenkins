@@ -8,11 +8,11 @@ your non-related EEA projects.
 
 ### Supported tags and respective Dockerfile links
 
-  - `:master` (default)
-  - `:slave`
-  - `:ubuntu-slave`
-  - `:debian-slave`
-  - `:centos-slave`
+- [`:master` (*master/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/master/Dockerfile) (default)
+- [`:slave`  (*slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/ubuntu/Dockerfile)
+- [`:ubuntu-slave` (*ubuntu-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/ubuntu/Dockerfile)
+- [`:debian-slave` (*debian-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/debian/Dockerfile)
+- [`:centos-slave` (*centos-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/centos/Dockerfile)
 
 
 ### Base docker image
