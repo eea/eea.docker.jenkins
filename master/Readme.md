@@ -125,8 +125,10 @@ To setup data container with existing jenkins configuration, jobs and plugins:
 
 ### .secret ###
 
-* `JENKINS_USER` user to be used to connect slaves to Jenkins master. Make sure that this user has the proper rights to connect slaves and run jenkins jobs.
-* `JENKINS_PASS` user password
+* `JENKINS_USER` jenkins user to be used to connect slaves to Jenkins master. Make sure that this user has the proper rights to connect slaves and run jenkins jobs.
+* `JENKINS_PASS` jenkins user password
+* `MTP_USER` postfix user name to be used to login to `MTP_RELAY` (see **postfix.env** bellow)
+* `MTP_PASS` postfix password to be used to login to `MTP_RELAY` (see **postfix.env** bellow)
 
 ### master.env ###
 
@@ -150,9 +152,9 @@ To setup data container with existing jenkins configuration, jobs and plugins:
 
 ###postix.env###
 
-* `POSTFIX_DOMAIN` Mail host domain to be used with postfix SMTP only mail server
-
-
+* `MTP_HOST` Mail host domain to be used with postfix SMTP only mail server
+* `MTP_RELAY` Mail server address/ip to be used to send emails (e.g. smtp.gmail.com. Default None - emails are sent using postfix service within postfix docker image)
+* `MTP_PORT` Mail server port to be used to send emails (e.g.: 587. Default: None)
 
 
 ## Copyright and license
