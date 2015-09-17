@@ -51,11 +51,12 @@ ubuntu:
 
 postfix:
   restart: always
-  image: yorkshirekev/postfix
-  entrypoint: ["/bin/bash", "-c", "/startservices.sh $POSTFIX_DOMAIN"]
+  image: eeacms/postfix
   env_file:
     - .secret
     - postfix.env
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
 
 data:
   build: data
