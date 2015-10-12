@@ -5,14 +5,17 @@ javadoc:1.1
 nested-view:1.14
 console-column-plugin:1.5
 antisamy-markup-formatter:1.1
+durable-task:1.6
 mailer:1.11
 maven-plugin:2.8
-repository-connector:1.1.1
 async-http-client:1.7.8
+repository-connector:1.1.1
 subversion:2.5
 PrioritySorter:2.9
 chucknorris:0.5
-credentials:1.18
+authentication-tokens:1.2
+credentials:1.23
+docker-build-step:1.31
 next-executions:1.0.10
 Hudson core:1.596.2
 monitoring:1.55.0
@@ -57,11 +60,12 @@ windmill:1.5
 redmine:0.15
 ldapemail:0.8
 jabber:1.34
-jenkinswalldisplay:0.6.28
 ssh-credentials:1.10
+jenkinswalldisplay:0.6.28
 mapdb-api:1.0.6.0
 openid4java:0.9.8.0
 jquery:1.7.2-1
+docker-plugin:0.13.0
 python:1.2
 email-ext:2.39
 github-oauth:0.20
@@ -92,9 +96,9 @@ project-stats-plugin:0.4
 script-security:1.13
 performance:1.13
 compact-columns:1.10
+swarm:1.22
 log-parser:1.0.8
 nodejs:0.2.1
-swarm:1.22
 maven-info:0.2.0
 dry:2.41
 all-changes:1.3
@@ -108,4 +112,5 @@ analysis-collector:1.42
 seleniumhq:0.4
 flashlog-plugin:1.0
 claim:2.6
+docker-commons:1.2
 github:1.11
