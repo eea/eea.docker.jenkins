@@ -14,7 +14,7 @@ subversion:2.5
 PrioritySorter:2.9
 chucknorris:0.5
 authentication-tokens:1.2
-credentials:1.23
+credentials:1.18
 docker-build-step:1.31
 next-executions:1.0.10
 Hudson core:1.596.2
