@@ -9,7 +9,7 @@ mailer:1.11
 maven-plugin:2.7.1
 repository-connector:1.1.1
 async-http-client:1.7.8
-subversion:2.5.4
+subversion:2.5
 PrioritySorter:2.9
 chucknorris:0.5
 credentials:1.18
