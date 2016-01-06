@@ -1,4 +1,4 @@
-FROM eeacms/centos
+FROM eeacms/centos:7s
 MAINTAINER "Alin Voinea" <alin.voinea@eaudeweb.ro>
 
 RUN \
@@ -6,6 +6,11 @@ RUN \
   yum -y install \
     java-1.7.0-openjdk \
     xorg-x11-server-Xvfb
+
+RUN curl https://bootstrap.pypa.io/get-pip.py | python3.4 && \
+    pip3 install chaperone
+
+ADD chaperone.conf     /etc/chaperone.d/chaperone.conf
 
 #
 # Node.js
@@ -43,4 +48,5 @@ ENV HOME $JENKINS_HOME/worker
 USER jenkins
 
 # Start
-CMD /bin/jenkins-slave.sh
+ENTRYPOINT ["/usr/bin/chaperone"]
+CMD ["--user", "jenkins"]
