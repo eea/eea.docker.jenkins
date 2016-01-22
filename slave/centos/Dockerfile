@@ -10,8 +10,6 @@ RUN \
 RUN curl https://bootstrap.pypa.io/get-pip.py | python3.4 && \
     pip3 install chaperone
 
-ADD chaperone.conf     /etc/chaperone.d/chaperone.conf
-
 #
 # Node.js
 #
@@ -39,9 +37,7 @@ RUN useradd -d "$JENKINS_HOME/worker" -u 1000 -m -s /bin/bash jenkins
 # Add swarm-client
 RUN curl -o /bin/swarm-client.jar -k http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar
 
-# Add start script
-RUN curl -o /bin/jenkins-slave.sh -k https://raw.githubusercontent.com/eea/eea.docker.jenkins/master/slave/start.sh
-RUN chmod +x /bin/jenkins-slave.sh
+ADD https://raw.githubusercontent.com/eea/eea.docker.jenkins/develop/slave/chaperone.conf     /etc/chaperone.d/chaperone.conf
 
 # Login as jenkins
 ENV HOME $JENKINS_HOME/worker
