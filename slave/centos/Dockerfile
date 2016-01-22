@@ -34,13 +34,14 @@ ENV JENKINS_HOME /var/jenkins_home
 RUN mkdir -p $JENKINS_HOME
 RUN useradd -d "$JENKINS_HOME/worker" -u 1000 -m -s /bin/bash jenkins
 
-# Add swarm-client
-RUN curl -o /bin/swarm-client.jar -k http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar
+# Add swarm-client and chaperone.conf
+RUN mkdir -p /etc/chaperone.d/
+RUN curl -k -o /bin/swarm-client.jar -k http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar
+RUN curl -k -o /etc/chaperone.d/chaperone.conf https://raw.githubusercontent.com/eea/eea.docker.jenkins/develop/slave/chaperone.conf
 
-ADD https://raw.githubusercontent.com/eea/eea.docker.jenkins/develop/slave/chaperone.conf     /etc/chaperone.d/chaperone.conf
-
-# Login as jenkins
 ENV HOME $JENKINS_HOME/worker
+
+WORKDIR $HOME
 USER jenkins
 
 # Start
