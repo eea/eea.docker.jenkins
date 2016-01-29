@@ -14,7 +14,6 @@ PrioritySorter:2.9
 chucknorris:0.5
 credentials:1.18
 next-executions:1.0.10
-Hudson core:1.596.2
 monitoring:1.55.0
 git-client:1.16.1
 dependencyanalyzer:0.7
