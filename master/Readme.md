@@ -8,13 +8,21 @@ your non-related EEA projects.
 
 ## Supported tags and respective Dockerfile links
 
+### latest (unstable)
+
+- [`:master` (*master/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/master/Dockerfile) (default)
+- [`:slave`  (*slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/ubuntu/Dockerfile)
+- [`:ubuntu-slave` (*ubuntu-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/ubuntu/Dockerfile)
+- [`:debian-slave`  (*debian-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/debian/Dockerfile)
+- [`:centos-slave` (*centos-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/centos/Dockerfile)
+
 ### v1.1
 
-- [`:master`, `:master-1.1` (*master/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/master/Dockerfile) (default)
-- [`:slave`, `:slave-1.1`  (*slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/ubuntu/Dockerfile)
-- [`:ubuntu-slave`, `:ubuntu-slave-1.1` (*ubuntu-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/ubuntu/Dockerfile)
-- [`:debian-slave`, `:debian-slave-1.1`  (*debian-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/debian/Dockerfile)
-- [`:centos-slave`, `:centos-slave-1.1` (*centos-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/centos/Dockerfile)
+- [`:master-1.1` (*master/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/master/Dockerfile) (default)
+- [`:slave-1.1`  (*slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/slave/ubuntu/Dockerfile)
+- [`:ubuntu-slave-1.1` (*ubuntu-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/slave/ubuntu/Dockerfile)
+- [`:debian-slave-1.1`  (*debian-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/slave/debian/Dockerfile)
+- [`:centos-slave-1.1` (*centos-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/slave/centos/Dockerfile)
 
 ### v1.0
 
