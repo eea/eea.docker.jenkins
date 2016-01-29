@@ -1,4 +1,4 @@
-FROM eeacms/debian
+FROM eeacms/debian:jessie
 MAINTAINER "Alin Voinea" <alin.voinea@eaudeweb.ro>
 
 RUN \
@@ -25,7 +25,7 @@ RUN useradd -d "$JENKINS_HOME/worker" -u 1000 -m -s /bin/bash jenkins
 RUN curl -o /bin/swarm-client.jar -k http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar
 
 # Add start script
-RUN curl -o /bin/jenkins-slave.sh -k https://raw.githubusercontent.com/eea/eea.docker.jenkins/master/slave/start.sh
+RUN curl -o /bin/jenkins-slave.sh -k https://raw.githubusercontent.com/eea/eea.docker.jenkins/1.0/slave/start.sh
 RUN chmod +x /bin/jenkins-slave.sh
 
 # Login as jenkins
