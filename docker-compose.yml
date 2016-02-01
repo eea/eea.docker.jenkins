@@ -1,21 +1,21 @@
 master:
   restart: always
   image: eeacms/jenkins:master
-  user: "1000"
   ports:
     - "80:8080"
     - "50000:50000"
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
   volumes_from:
     - data
   links:
     - postfix
-  env_file:
-    - master.env
 
 worker:
   restart: always
   image: eeacms/jenkins:slave
-  user: "1000"
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
   volumes_from:
     - data
   env_file:
@@ -24,7 +24,8 @@ worker:
 
 centos:
   image: eeacms/jenkins:centos-slave
-  user: "1000"
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
   volumes_from:
     - data
   env_file:
@@ -33,7 +34,8 @@ centos:
 
 debian:
   image: eeacms/jenkins:debian-slave
-  user: "1000"
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
   volumes_from:
     - data
   env_file:
@@ -42,7 +44,8 @@ debian:
 
 ubuntu:
   image: eeacms/jenkins:ubuntu-slave
-  user: "1000"
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
   volumes_from:
     - data
   env_file:
@@ -59,7 +62,7 @@ postfix:
     - /etc/localtime:/etc/localtime:ro
 
 data:
-  build: data
-  user: "1000"
+  image: busybox
   volumes:
     - /var/jenkins_home
+  command: ["chown", "-v", "-R", "1000:1000", "/var/jenkins_home"]

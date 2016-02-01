@@ -1,41 +1,66 @@
-## Jenkins master-slave ready to run Docker image (Jenkins Swarm Plugin)
+# Jenkins master-slave ready to run Docker image (Jenkins Swarm Plugin)
 
-Docker images for master/slave created to be used for EEA Jenkins.
+Docker images for master/slave based on Jenkins Swarm Plugin.
 
 These images are generic, thus you can obviously re-use them within
 your non-related EEA projects.
 
 
-### Supported tags and respective Dockerfile links
+## Supported tags and respective Dockerfile links
+
+### latest (unstable)
 
 - [`:master` (*master/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/master/Dockerfile) (default)
 - [`:slave`  (*slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/ubuntu/Dockerfile)
 - [`:ubuntu-slave` (*ubuntu-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/ubuntu/Dockerfile)
-- [`:debian-slave` (*debian-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/debian/Dockerfile)
+- [`:debian-slave`  (*debian-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/debian/Dockerfile)
 - [`:centos-slave` (*centos-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/master/slave/centos/Dockerfile)
 
+### v1.1
 
-### Base docker image
+- [`:master-1.1` (*master/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/master/Dockerfile) (default)
+- [`:slave-1.1`  (*slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/slave/ubuntu/Dockerfile)
+- [`:ubuntu-slave-1.1` (*ubuntu-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/slave/ubuntu/Dockerfile)
+- [`:debian-slave-1.1`  (*debian-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/slave/debian/Dockerfile)
+- [`:centos-slave-1.1` (*centos-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.1/slave/centos/Dockerfile)
+
+### v1.0
+
+- [`:master-1.0` (*master/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.0/master/Dockerfile) (default)
+- [`:slave-1.0`  (*slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.0/slave/ubuntu/Dockerfile)
+- [`:ubuntu-slave-1.0` (*ubuntu-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.0/slave/ubuntu/Dockerfile)
+- [`:debian-slave-1.0`  (*debian-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.0/slave/debian/Dockerfile)
+- [`:centos-slave-1.0` (*centos-slave/Dockerfile*)](https://github.com/eea/eea.docker.jenkins/blob/1.0/slave/centos/Dockerfile)
+
+## Changes
+
+ - [CHANGELOG.md](https://github.com/eea/eea.docker.jenkins/blob/master/CHANGELOG.md)
+
+## Base docker image
 
  - [hub.docker.com](https://registry.hub.docker.com/u/eeacms/jenkins)
 
 
-### Source code
+## Source code
 
   - [github.com](http://github.com/eea/eea.docker.jenkins)
 
 
-### Installation
+## Installation
 
 1. Install [Docker](https://www.docker.com/).
 
 2. Install [Docker Compose](https://docs.docker.com/compose/).
 
 
-### Usage
+## Usage
 
     $ git clone https://github.com/eea/eea.docker.jenkins.git
     $ cd eea.docker.jenkins
+    
+### EEA only (checkout EEA branch)
+
+    $ git checkout eea
 
 
 Add user and password to connect jenkins slaves to jenkins master
@@ -75,7 +100,7 @@ Check that everything started as expected and the slave successfully connected t
 
     $ sudo docker-compose logs
 
-### Troubleshooting
+## Troubleshooting
 
 If the jenkins slaves fail to connect you can either directly provide
 `JENKINS_MASTER` env URL within `slave.env` file or within your favorite
@@ -87,7 +112,7 @@ then restart jenkins slaves:
     $ sudo docker-compose logs worker
 
 
-### Upgrade
+## Upgrade
 
     $ sudo docker-compose pull master worker
     $ sudo docker-compose restart master worker
@@ -110,7 +135,7 @@ For example, ssh to the host and extract all the data from the container (config
 The data container can also be easily [copied, moved and be reused between different environments](https://docs.docker.com/userguide/dockervolumes/#backup-restore-or-migrate-data-volumes).
 
 <a name="restore"></a>
-### Restore existing jenkins configuration ###
+### Restore existing jenkins configuration
 
 To setup data container with existing jenkins configuration, jobs and plugins:
 
@@ -120,7 +145,7 @@ To setup data container with existing jenkins configuration, jobs and plugins:
 
 
 <a name="env"></a>
-## Supported environment variables ##
+## Supported environment variables
 
 
 ### .secret ###
@@ -150,7 +175,7 @@ To setup data container with existing jenkins configuration, jobs and plugins:
 * `JENKINS_AUTO_DISCOVERY_ADDRESS` Use this address for udp-based auto-discovery (default 255.255.255.255)
 * `JENKINS_DISABLE_SSL_VERIFICATION` Disables SSL verification in the HttpClient.
 
-###postix.env###
+### postix.env ###
 
 * `MTP_HOST` Mail host domain to be used with postfix SMTP only mail server
 * `MTP_RELAY` Mail server address/ip to be used to send emails (e.g. smtp.gmail.com. Default None - emails are sent using postfix service within postfix docker image)
