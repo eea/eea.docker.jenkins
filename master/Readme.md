@@ -58,11 +58,6 @@ your non-related EEA projects.
     $ git clone https://github.com/eea/eea.docker.jenkins.git
     $ cd eea.docker.jenkins
     
-### EEA only (checkout EEA branch)
-
-    $ git checkout eea
-
-
 Add user and password to connect jenkins slaves to jenkins master
 
     $ cp .secret.example .secret
@@ -72,33 +67,41 @@ Also customize your deployment by changing environment variables
 within `master.env`, `slave.env` and `postfix.env` files.
 See [Supported environment variables](#env) section bellow
 
+Make sure you update or comment `JENKINS_MASTER` within `slave.env` before you
+start the worker.
 
 **Before starting you may want to restore existing jenkins configuration**,
-jobs and plugins within a data container. See section [Restore existing jenkins configuration](#restore) for the command to start a data container first.
+jobs and plugins within a data container. See section [Restore existing jenkins configuration](#restore)
+for the command to start a data container first.
 
-Below some cluster examples on how to start a master and one or more slaves using docker-compose. Adjust the cluster composition depending on your jenkins needs.
+Below some cluster examples on how to start a master and one or more slaves using docker-compose.
+Adjust the cluster composition depending on your jenkins needs.
 
 Start (master only). Do this the first time you run the jenkins cluster.
 
     $ sudo docker-compose up -d master
 
-Now go to http://localhost:80/configure and configure the JENKINS_URL, otherwise the [slaves will not be able to connect to the master](https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=60915879). This is necessary the first time you run the master.
+Now go to http://localhost:80/configure and configure the JENKINS_URL,
+otherwise the [slaves will not be able to connect to the master](https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=60915879).
+This is necessary the first time you run the master. Also set, or comment `JENKINS_MASTER` within `slave.env`
 
 Start (master and 1 slave)
 
-    $ sudo docker-compose up -d master worker
+    $ sudo docker-compose up -d
 
 Scale slaves to 3
 
     $ sudo docker-compose scale worker=3
 
-Start (debian/centos/ubuntu slaves)
-
-    $ sudo docker-compose up -d centos debian ubuntu
-
 Check that everything started as expected and the slave successfully connected to master
 
-    $ sudo docker-compose logs
+    $ sudo docker-compose logs worker
+
+Start (debian/centos/ubuntu slaves)
+
+    $ docker run --name=debian -e JENKINS_NAME=debian eeacms/jenkins:debian-slave
+    $ docker run --name=centos -e JENKINS_NAME=centos eeacms/jenkins:centos-slave
+    $ docker run --name=ubuntu -e JENKINS_NAME=ubuntu eeacms/jenkins:ubuntu-slave
 
 ## Troubleshooting
 
@@ -114,8 +117,8 @@ then restart jenkins slaves:
 
 ## Upgrade
 
-    $ sudo docker-compose pull master worker
-    $ sudo docker-compose restart master worker
+    $ sudo docker-compose pull
+    $ sudo docker-compose up -d
 
 ## Persistent data as you wish ##
 The Jenkins data is kept in a
@@ -140,8 +143,10 @@ The data container can also be easily [copied, moved and be reused between diffe
 To setup data container with existing jenkins configuration, jobs and plugins:
 
     $ docker-compose up data
-    $ docker run -it --rm --volumes-from eeadockerjenkins_data_1 eeacms/ubuntu \
-       /bin/sh -c "git clone https://github.com/eea/eea.docker.jenkins.config.git /var/jenkins_home && chown -R 1000:1000 /var/jenkins_home"
+    $ docker run -it --rm --volumes-from eeadockerjenkins_data_1 eeacms/ubuntu bash
+       $ git clone https://github.com/eea/eea.docker.jenkins.config.git /var/jenkins_home
+       $ chown -R 1000:1000 /var/jenkins_home
+       $ exit
 
 
 <a name="env"></a>
