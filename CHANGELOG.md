@@ -1,7 +1,7 @@
 # Changelog
 
 
-## 1.1 (2016-01-29)
+## 1.1 (2016-02-01)
 
 - Added chaperone process manager within Jenkins slaves
   [avoinea - refs #31596 EEA]
