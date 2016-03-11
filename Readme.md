@@ -118,6 +118,7 @@ To setup data container with existing jenkins configuration, jobs and plugins:
 ### master.env ###
 
 * `JAVA_OPTS` You might need to customize the JVM running Jenkins master, typically to pass system properties or tweak heap memory settings. Use JAVA_OPTS environment variable for this purpose.
+* `JENKINS_OPTS` Start Jenkins with custom options. Useful if you want to start Jenkins on `https` for example.
 
 ### slave.env ###
 
