@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 2.0 (2016-03-10)
+
+- Split monolithic `eeacms/jenkins` image to `eeacms/jenkins-master` and `eeacms/jenkins-slave`
+  [avoinea - refs #69441 EEA]
+
+
 ## 1.1 (2016-02-01)
 
 - Added chaperone process manager within Jenkins slaves
