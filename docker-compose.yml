@@ -30,7 +30,6 @@ worker:
   - postgres
   environment:
   - JAVA_OPTS=-Xmx2048m
-  - JENKINS_MASTER=http://10.46.104.47
   - JENKINS_NAME=worker
   - JENKINS_RETRY=10
   env_file:

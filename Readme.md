@@ -19,15 +19,13 @@ Docker orchestration for EEA Jenkins
     $ git clone https://github.com/eea/eea.docker.jenkins.git
     $ cd eea.docker.jenkins
     
-Add user and password to connect jenkins slaves to jenkins master
+Add master, user and password to connect jenkins slaves to jenkins master
 
     $ cp .secret.example .secret
     $ vi .secret
 
 Also customize your deployment by changing environment variables
 See [Supported environment variables](#env) section bellow.
-
-Make sure you update or remove `JENKINS_MASTER` within `docker-compose.yml` before you start the worker.
 
 **Before starting you may want to restore existing jenkins configuration**,
 jobs and plugins within a data container. See section [Restore existing jenkins configuration](#restore)
@@ -42,7 +40,7 @@ Start (master only). Do this the first time you run the jenkins cluster.
 
 Now go to http://localhost:80/configure and configure the JENKINS_URL,
 otherwise the [slaves will not be able to connect to the master](https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=60915879).
-This is necessary the first time you run the master. Also set, or remove `JENKINS_MASTER` within `docker-compose.yml`
+This is necessary the first time you run the master.
 
 Start (master and 1 slave)
 
@@ -59,7 +57,7 @@ Check that everything started as expected and the slave successfully connected t
 ## Troubleshooting
 
 If the jenkins slaves fail to connect you can either directly provide
-`JENKINS_MASTER` env URL within `docker-compose.yml` file or within your favorite
+`JENKINS_MASTER` env URL within `.secret` file or within your favorite
 browser head to `http://<your.jenkins.ip>/configure` and update
 `Jenkins URL` property to match your jenkins server IP/DOMAIN (`http://<your.jenkins.ip>/`)
 then restart jenkins slaves:
