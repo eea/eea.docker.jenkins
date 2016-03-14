@@ -54,6 +54,8 @@ Check that everything started as expected and the slave successfully connected t
 
     $ sudo docker-compose logs worker
 
+See also [Docker orchestration for EEA Jenkins workers able to run Docker related jobs](https://github.com/eea/eea.docker.jenkins.dind)
+
 ## Troubleshooting
 
 If the jenkins slaves fail to connect you can either directly provide
