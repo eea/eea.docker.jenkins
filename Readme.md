@@ -25,11 +25,9 @@ Add user and password to connect jenkins slaves to jenkins master
     $ vi .secret
 
 Also customize your deployment by changing environment variables
-within `master.env`, `slave.env` and `postfix.env` files.
-See [Supported environment variables](#env) section bellow
+See [Supported environment variables](#env) section bellow.
 
-Make sure you update or comment `JENKINS_MASTER` within `slave.env` before you
-start the worker.
+Make sure you update or remove `JENKINS_MASTER` within `docker-compose.yml` before you start the worker.
 
 **Before starting you may want to restore existing jenkins configuration**,
 jobs and plugins within a data container. See section [Restore existing jenkins configuration](#restore)
@@ -44,7 +42,7 @@ Start (master only). Do this the first time you run the jenkins cluster.
 
 Now go to http://localhost:80/configure and configure the JENKINS_URL,
 otherwise the [slaves will not be able to connect to the master](https://wiki.jenkins-ci.org/pages/viewpage.action?pageId=60915879).
-This is necessary the first time you run the master. Also set, or comment `JENKINS_MASTER` within `slave.env`
+This is necessary the first time you run the master. Also set, or remove `JENKINS_MASTER` within `docker-compose.yml`
 
 Start (master and 1 slave)
 
@@ -61,7 +59,7 @@ Check that everything started as expected and the slave successfully connected t
 ## Troubleshooting
 
 If the jenkins slaves fail to connect you can either directly provide
-`JENKINS_MASTER` env URL within `slave.env` file or within your favorite
+`JENKINS_MASTER` env URL within `docker-compose.yml` file or within your favorite
 browser head to `http://<your.jenkins.ip>/configure` and update
 `Jenkins URL` property to match your jenkins server IP/DOMAIN (`http://<your.jenkins.ip>/`)
 then restart jenkins slaves:
@@ -107,7 +105,6 @@ To setup data container with existing jenkins configuration, jobs and plugins:
 <a name="env"></a>
 ## Supported environment variables
 
-
 ### .secret ###
 
 * `JENKINS_USER` jenkins user to be used to connect slaves to Jenkins master. Make sure that this user has the proper rights to connect slaves and run jenkins jobs.
@@ -135,6 +132,7 @@ To setup data container with existing jenkins configuration, jobs and plugins:
 * `JENKINS_NO_RETRY_AFTER_CONNECTED` Do not retry if a successful connection gets closed.
 * `JENKINS_AUTO_DISCOVERY_ADDRESS` Use this address for udp-based auto-discovery (default 255.255.255.255)
 * `JENKINS_DISABLE_SSL_VERIFICATION` Disables SSL verification in the HttpClient.
+* `JENKINS_OPTS` You can provide multiple parameters via this environment like: `-e JENKINS_OPTS="-labels code-analysis -mode exclusive"`
 
 ### postix.env ###
 
