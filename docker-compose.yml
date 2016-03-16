@@ -48,6 +48,8 @@ postfix:
   - /etc/localtime:/etc/localtime:ro
   environment:
   - MTP_HOST=eea.europa.eu
+  env_file:
+  - .secret
 
 postgres:
   image: eeacms/postgres:9.4
