@@ -47,7 +47,7 @@ postfix:
   volumes:
   - /etc/localtime:/etc/localtime:ro
   environment:
-  - MTP_HOST=eea.europa.eu
+  - MTP_HOST=ci.eionet.europa.eu
   env_file:
   - .secret
 
