@@ -52,7 +52,7 @@ postfix:
   - .secret
 
 postgres:
-  image: eeacms/postgres:9.4
+  image: eeacms/postgres:9.5
   restart: always
   volumes:
   - /etc/localtime:/etc/localtime:ro
