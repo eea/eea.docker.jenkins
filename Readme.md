@@ -101,6 +101,57 @@ To setup data container with existing jenkins configuration, jobs and plugins:
        $ chown -R 1000:1000 /var/jenkins_home
        $ exit
 
+### Data migration
+
+You can access production data for jenkins inside `master_data` container at:
+
+    /var/jenkins_home
+
+And `worker_data` container at:
+
+    /var/jenkins_home/worker
+
+Thus:
+
+1. Start **rsync client** on host where do you want to migrate `Jenkins master data` (DESTINATION HOST):
+
+  ```
+    $ docker run -it --rm --name=r-client --volumes-from=eeadockerjenkins_master_data_1 eeacms/rsync sh
+  ```
+
+2. Start **rsync server** on host from where do you want to migrate `Jenkins master data` (SOURCE HOST):
+
+  ```
+    $ docker run -it --rm --name=r-server -p 2222:22 --volumes-from=eeadockerjenkins_master_data_1 \
+                 -e SSH_AUTH_KEY="<SSH-KEY-FROM-R-CLIENT-ABOVE>" \
+             eeacms/rsync server
+  ```
+
+3. Within **rsync client** container from step 1 run:
+
+  ```
+    $ rsync -e 'ssh -p 2222' -avz --numeric-ids root@<SOURCE HOST IP>:/var/jenkins_home/ /var/jenkins_home/
+  ```
+
+4. Start **rsync client** on host where do you want to migrate `Jenkins worker data` (DESTINATION HOST):
+
+  ```
+    $ docker run -it --rm --name=r-client --volumes-from=eeadockerjenkins_worker_data_1 eeacms/rsync sh
+  ```
+
+5. Start **rsync server** on host from where do you want to migrate `Jenkins worker data` (SOURCE HOST):
+
+  ```
+    $ docker run -it --rm --name=r-server -p 2222:22 --volumes-from=eeadockerjenkins_worker_data_1 \
+                 -e SSH_AUTH_KEY="<SSH-KEY-FROM-R-CLIENT-ABOVE>" \
+             eeacms/rsync server
+  ```
+
+6. Within **rsync client** container from step 4 run:
+
+  ```
+    $ rsync -e 'ssh -p 2222' -avz --numeric-ids --exclude="workspace" root@<SOURCE HOST IP>:/var/jenkins_home/worker/ /var/jenkins_home/worker/
+  ```
 
 <a name="env"></a>
 ## Supported environment variables
