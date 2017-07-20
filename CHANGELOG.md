@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.60.1 (2017-07-20)
+
+- Move production deployment to []Rancher Catalog](https://github.com/eea/eea.rancher.catalog)
+
 
 ## 2.0 (2016-03-10)
 

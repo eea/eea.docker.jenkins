@@ -1,62 +1,26 @@
-master:
-  image: eeacms/jenkins-master:2.0
-  restart: always
-  ports:
-  - "80:8080"
-  - "50000:50000"
-  volumes:
-  - /etc/localtime:/etc/localtime:ro
-  volumes_from:
-  - master_data
-  links:
-  - postfix
-  environment:
-  - JAVA_OPTS=-Xmx2048m
+version: "2"
+services:
+  master:
+    image: eeacms/jenkins-master
+    ports:
+    - "80:8080"
+    environment:
+    - JAVA_OPTS=-Xmx2048m
+    volumes:
+    - jenkins-master:/var/jenkins_home
 
-master_data:
-  image: busybox
-  volumes:
-  - /var/jenkins_home
-  command: ["chown", "-v", "-R", "1000:1000", "/var/jenkins_home"]
+  worker:
+    image: eeacms/jenkins-slave
+    environment:
+      JAVA_OPTS: "-Xmx2048m"
+      JENKINS_MASTER: "http://master:8080"
+      JENKINS_NAME: "worker"
+      JENKINS_USER: "jenkins"
+      JENKINS_PASS: "jenkins"
+      JENKINS_RETRY: "10"
+    volumes:
+    - jenkins-worker:/var/jenkins_home/worker
 
-worker:
-  image: eeacms/jenkins-slave-eea:2.0
-  restart: always
-  volumes:
-  - /etc/localtime:/etc/localtime:ro
-  volumes_from:
-  - worker_data
-  links:
-  - postgres
-  environment:
-  - JAVA_OPTS=-Xmx2048m
-  - JENKINS_NAME=worker
-  - JENKINS_RETRY=10
-  env_file:
-  - .secret
-
-worker_data:
-  image: busybox
-  volumes:
-  - /var/jenkins_home/worker
-  command: ["chown", "-v", "-R", "1000:1000", "/var/jenkins_home/worker"]
-
-postfix:
-  image: eeacms/postfix:eionet
-  restart: always
-  volumes:
-  - /etc/localtime:/etc/localtime:ro
-  environment:
-  - MTP_HOST=ci.eionet.europa.eu
-  env_file:
-  - .secret
-
-postgres:
-  image: eeacms/postgres:9.5
-  restart: always
-  volumes:
-  - /etc/localtime:/etc/localtime:ro
-  environment:
-  - POSTGRES_DBNAME=datafs zasync
-  - POSTGRES_DBUSER=zope
-  - POSTGRES_DBPASS=zope
+volumes:
+  jenkins-master:
+  jenkins-worker:
