@@ -41,13 +41,7 @@ Setup Jenkins at [http://localhost]()
 <a name="restore"></a>
 ### Restore existing jenkins configuration
 
-To setup data container with existing jenkins configuration, jobs and plugins:
 
-    $ docker volume create --name jenkins-master
-    $ docker run -it --rm -v jenkins-master:/var/jenkins_home eeacms/jenkins-master bash
-       $ git clone https://github.com/eea/eea.docker.jenkins.config.git /var/jenkins_home
-       $ chown -R jenkins:jenkins /var/jenkins_home
-       $ exit
 
 ## Production 
 
