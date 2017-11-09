@@ -47,27 +47,29 @@ Setup Jenkins at [http://localhost]()
 
 ### Deployment
 
+> **Note:** See **EEA SVN** for `answers.txt` files
+
 * Within `Rancher Catalog > EEA` deploy:
-  * EEA - Jenkins (Master)
-  * EEA - Jenkins (Worker)
-  * EEA - Jenkins (EEA Worker)
+  * `EEA - Jenkins (Master)`
+  * `EEA - Jenkins (Worker)`
+  * `EEA - Jenkins (EEA Worker)`
 
-* Deploy Jenkins Docker Slave with docker-compose
+* Deploy `EEA - Jenkins (Docker Worker)` with *docker-compose* (recommended)
 
-    $ ssh user@docker-host-1
-    $ cd /var/local/deploy
-    $ git clone https://github.com/eea/eea.rancher.catalog.git
-    $ ln -s eea.rancher.catalog/templates/jenkins-worker-dind jenkins-worker-dind
-    $ cd jenkins-worker-dind
+      $ ssh user@docker-host-1
+      $ cd /var/local/deploy
+      $ git clone https://github.com/eea/eea.rancher.catalog.git
+      $ ln -s eea.rancher.catalog/templates/jenkins-worker-dind jenkins-worker-dind
+      $ cd jenkins-worker-dind
 
 * Add deployment environment variables:
 
-    $ vim .env
-    $ echo "JENKINS_NAME=docker-$(hostname)" >> .env
+      $ vim .env
+      $ echo "JENKINS_NAME=docker-$(hostname)" >> .env
 
-* Deploy the latest version (e.g.: 4):
+* Deploy the latest version (e.g.: `4`):
 
-    $ docker-compose -f 4/docker-compose.yml up -d
+      $ docker-compose -f 4/docker-compose.yml up -d
 
 ### Production data migration
 
